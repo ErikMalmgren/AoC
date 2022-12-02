@@ -1,3 +1,5 @@
+package Day1;
+ 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -10,7 +12,7 @@ import java.util.Scanner;
 public class Problem1 {
 
     public static void main(String[] args) throws IOException {
-        File file = new File("/home/em/repos/AoC/Day 1/input1.txt");
+        File file = new File("/home/em/repos/AoC/Day1/input1.txt");
 
         int cal = 0;
         ArrayList<Integer> cals = new ArrayList<>();
