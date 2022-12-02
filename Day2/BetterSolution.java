@@ -1,13 +1,10 @@
 package Day2;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
 
 
 public class BetterSolution {
@@ -29,14 +26,11 @@ public class BetterSolution {
         return calcPoints(keyValues);
     }
 
-
-
     private static int partOne(){
         String[] keyStrings = {"A X", "A Y", "A Z", "B X", "B Y", "B Z", "C X", "C Y", "C Z"};
         int[] values = {4, 8, 3, 1, 5, 9, 7, 2, 6};
         Map<String, Integer> keyValues = combValues(keyStrings, values);
         return calcPoints(keyValues);
-
     }
 
     private static int calcPoints(Map<String, Integer> map){
@@ -55,18 +49,15 @@ public class BetterSolution {
         } catch (IOException e){
             e.printStackTrace();
         }
-
-
         return totalScore;
     }
 
-    private static Map combValues(String[] keyStrings, int[] values){
+    private static Map<String, Integer> combValues(String[] keyStrings, int[] values){
 
         Map<String, Integer> keyValues = new HashMap<>();
         for(int i = 0; i < 9; i++){
             keyValues.put(keyStrings[i], values[i]);
         }
-        
         return keyValues;
     }
 }
