@@ -6,8 +6,11 @@ import java.util.Scanner;
 
 public class Solution {
     public static void main(String[] args) {
+        long time1 = System.nanoTime();
         System.out.println("Part one: " + partOne());
         System.out.println("Part two: " + partTwo());
+        long time2 = System.nanoTime();
+        System.out.println("Runtime in ms: " + (time2 - time1)/1000000);
     }
 
     public static int partTwo(){
@@ -24,7 +27,7 @@ public class Solution {
                 String opponentMove = temp.substring(0,1);
                 String strategy = temp.substring(2, 3);
                 String myMove = moveHelper(opponentMove, strategy);
-
+                totalScore += pointCalc(myMove, strategy);
 
             }
 
@@ -37,17 +40,55 @@ public class Solution {
     }
 
 
+    public static int pointCalc(String myMove, String strategy){
+        int res = 0;
+        if(myMove.equals("A")){
+            res += 1;
+        }
+        if(myMove.equals("B")){
+            res += 2;
+        }
+        if(myMove.equals("C")){
+            res += 3;
+        }
+        if(strategy.equals("Y")){
+            res += 3;
+        }
+        if(strategy.equals("Z")){
+            res += 6;
+        }
+
+
+        return res;
+    }
+
     public static String moveHelper(String opponent, String strategy){
         String res = "";
 
         if(strategy.equals("X")){
-
+            if(opponent.equals("A")){
+                res = "C";
+            }
+            if(opponent.equals("B")){
+                res = "A";
+            }
+            if(opponent.equals("C")){
+                res = "B";
+            }
         }
         if(strategy.equals("Y")){
             res = opponent;
         }
         if(strategy.equals("Z")){
-
+            if(opponent.equals("A")){
+                res = "B";
+            }
+            if(opponent.equals("B")){
+                res = "C";
+            }
+            if(opponent.equals("C")){
+                res = "A";
+            }
         }
 
         return res;
@@ -80,7 +121,6 @@ public class Solution {
         } catch (FileNotFoundException e1){
             e1.printStackTrace();
         }
-        System.out.println(totalScore);
 
         return totalScore;
     }
