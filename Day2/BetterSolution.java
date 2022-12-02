@@ -1,10 +1,14 @@
 package Day2;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+
 
 public class BetterSolution {
     public static void main(String[] args) {
@@ -15,49 +19,43 @@ public class BetterSolution {
         System.out.println("Runtime in ms: " + (time2 - time1)/1000000);
     }
 
-    //About same runtime as the bad solution :)
+    //Scanner är slow af scanner runtime 100 ms
+    //BufferedReader runtime 10 ms
    
     private static int partTwo(){
-        int totalScore = 0;
         String[] keyStrings = {"A X", "A Y", "A Z", "B X", "B Y", "B Z", "C X", "C Y", "C Z"};
         int[] values = {3, 4, 8, 1, 5, 9, 2, 6, 7};
         Map<String, Integer> keyValues = combValues(keyStrings, values);
-
-        try {
-            Scanner scan = new Scanner(new File("/home/em/repos/AoC/Day2/input.txt"));
-
-            while(scan.hasNextLine()){
-                String round = scan.nextLine();
-
-                totalScore += keyValues.get(round);
-            }
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        return totalScore;
+        return calcPoints(keyValues);
     }
 
 
 
     private static int partOne(){
-        int totalScore = 0;
         String[] keyStrings = {"A X", "A Y", "A Z", "B X", "B Y", "B Z", "C X", "C Y", "C Z"};
         int[] values = {4, 8, 3, 1, 5, 9, 7, 2, 6};
         Map<String, Integer> keyValues = combValues(keyStrings, values);
+        return calcPoints(keyValues);
 
-        try {
-            Scanner scan = new Scanner(new File("/home/em/repos/AoC/Day2/input.txt"));
+    }
 
+    private static int calcPoints(Map<String, Integer> map){
+        int totalScore = 0;
+        BufferedReader br = null;
 
-            while(scan.hasNextLine()){
-                String round = scan.nextLine();
-                totalScore += keyValues.get(round);
+        try{
+            String currentLine;
+            
+            br = new BufferedReader(new FileReader("/home/em/repos/AoC/Day2/input.txt"));
+
+            while((currentLine = br.readLine()) != null){
+                totalScore += map.get(currentLine);
             }
-        } catch (FileNotFoundException e){
+
+        } catch (IOException e){
             e.printStackTrace();
         }
+
 
         return totalScore;
     }
