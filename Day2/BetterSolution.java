@@ -40,7 +40,7 @@ public class BetterSolution {
         try{
             String currentLine;
             
-            br = new BufferedReader(new FileReader("/home/em/repos/AoC/Day2/input.txt"));
+            br = new BufferedReader(new FileReader("inputs/day2.txt"));
 
             while((currentLine = br.readLine()) != null){
                 totalScore += map.get(currentLine);

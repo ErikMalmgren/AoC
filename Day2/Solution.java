@@ -5,6 +5,8 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Solution {
+
+
     public static void main(String[] args) {
         long time1 = System.nanoTime();
         System.out.println("Part one: " + partOne());
@@ -20,7 +22,7 @@ public class Solution {
         // X = lose, Y = draw, Z = win
 
         try {
-            Scanner scan = new Scanner(new File("/home/em/repos/AoC/Day2/input.txt"));
+            Scanner scan = new Scanner(new File("inputs/day2.txt"));
             
             while(scan.hasNextLine()){
                 String temp = scan.nextLine();
@@ -99,7 +101,7 @@ public class Solution {
         // A = rock, B = paper, C = scissor
         // X = rock, Y = paper, Z = scissor
         try{
-            Scanner scan = new Scanner(new File("/home/em/repos/AoC/Day2/input.txt"));
+            Scanner scan = new Scanner(new File("inputs/day2.txt"));
             
             while(scan.hasNextLine()){
                 String temp = scan.nextLine();
