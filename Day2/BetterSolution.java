@@ -17,7 +17,6 @@ public class BetterSolution {
         long time2 = System.nanoTime();
         System.out.println("Runtime in ms: " + (time2 - time1)/1000000);
     }
-
     //Scanner är slow af scanner runtime 100 ms
     //BufferedReader runtime 10 ms
    

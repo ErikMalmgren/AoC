@@ -16,6 +16,7 @@ public class SetSolution {
     }
     // Ungefär dubbelt så snabb som första lösningen tror O(n) mot minst O(n^2)
 
+
     private static int partTwo() throws IOException {
         var input = new File("inputs/day3.txt");
         var br = new BufferedReader(new FileReader(input));
