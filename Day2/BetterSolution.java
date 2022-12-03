@@ -8,7 +8,7 @@ import java.util.Map;
 
 
 public class BetterSolution {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         long time1 = System.nanoTime();
         System.out.println("Part one: " + partOne());
         System.out.println("Part two: " + partTwo());
@@ -19,36 +19,29 @@ public class BetterSolution {
     //Scanner är slow af scanner runtime 100 ms
     //BufferedReader runtime 10 ms
    
-    private static int partTwo(){
+    private static int partTwo() throws IOException{
         String[] keyStrings = {"A X", "A Y", "A Z", "B X", "B Y", "B Z", "C X", "C Y", "C Z"};
         int[] values = {3, 4, 8, 1, 5, 9, 2, 6, 7};
         Map<String, Integer> keyValues = combValues(keyStrings, values);
         return calcPoints(keyValues);
     }
 
-    private static int partOne(){
+    private static int partOne() throws IOException{
         String[] keyStrings = {"A X", "A Y", "A Z", "B X", "B Y", "B Z", "C X", "C Y", "C Z"};
         int[] values = {4, 8, 3, 1, 5, 9, 7, 2, 6};
         Map<String, Integer> keyValues = combValues(keyStrings, values);
         return calcPoints(keyValues);
     }
 
-    private static int calcPoints(Map<String, Integer> map){
+    private static int calcPoints(Map<String, Integer> map) throws IOException{
         int totalScore = 0;
-        BufferedReader br = null;
+        BufferedReader br = new BufferedReader(new FileReader("inputs/day2.txt"));
+        String currentLine;
 
-        try{
-            String currentLine;
-            
-            br = new BufferedReader(new FileReader("inputs/day2.txt"));
-
-            while((currentLine = br.readLine()) != null){
-                totalScore += map.get(currentLine);
-            }
-
-        } catch (IOException e){
-            e.printStackTrace();
+        while((currentLine = br.readLine()) != null){
+            totalScore += map.get(currentLine);
         }
+        
         return totalScore;
     }
 
