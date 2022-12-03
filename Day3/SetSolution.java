@@ -7,8 +7,10 @@ public class SetSolution {
     
     public static void main(String[] args) throws IOException {
         long startTime = System.nanoTime();
+        for(int i = 0; i < 1000; i++) {
         System.out.println("Part one: " + partOne());
         System.out.println("Part two: " + partTwo());
+        }
         long elapsedTime = System.nanoTime() - startTime;
         System.out.println("Runtime in ms: " + elapsedTime/1000000);
     }
