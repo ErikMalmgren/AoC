@@ -12,7 +12,7 @@ public class SetSolution {
         long elapsedTime = System.nanoTime() - startTime;
         System.out.println("Runtime in ms: " + elapsedTime/1000000);
     }
-    // Ungefär dubbelt så snabb som första lösningen
+    // Ungefär dubbelt så snabb som första lösningen tror O(n) mot minst O(n^2)
 
     private static int partTwo() throws IOException {
         var input = new File("inputs/day3.txt");
@@ -59,7 +59,7 @@ public class SetSolution {
         while((currentLine = br.readLine()) != null) {
             int mid = currentLine.length()/2;
             int biggest = 0; //Highest priority in backpack
-            
+
             String s1 = currentLine.substring(0, mid);
             String s2 = currentLine.substring(mid);
 
