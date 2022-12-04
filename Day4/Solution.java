@@ -21,34 +21,36 @@ public class Solution {
         int res2 = 0;
         var input = new File("inputs/day4.txt");
         var br  = new BufferedReader(new FileReader(input));
+        
         String currentLine;
+        String[] ranges;
+        String[] rangeOne;
+        String [] rangeTwo;
+
+        int rangeOneStart;
+        int rangeOneFinish;
+        int rangeTwoStart;
+        int rangeTwoFinish;
+
 
         while((currentLine = br.readLine())!= null){
-            String[] ranges = currentLine.split(",");
-            String[] rangeOne = ranges[0].split("-");
-            String[] rangeTwo = ranges[1].split("-");
-            int rangeOneStart = Integer.valueOf(rangeOne[0]);
-            int rangeOneFinish = Integer.valueOf(rangeOne[1]);
-            int rangeTwoStart = Integer.valueOf(rangeTwo[0]);
-            int rangeTwoFinish = Integer.valueOf(rangeTwo[1]);
+            ranges = currentLine.split(",");
+            rangeOne = ranges[0].split("-");
+            rangeTwo = ranges[1].split("-");
+
+            rangeOneStart = Integer.valueOf(rangeOne[0]);
+            rangeOneFinish = Integer.valueOf(rangeOne[1]);
+            rangeTwoStart = Integer.valueOf(rangeTwo[0]);
+            rangeTwoFinish = Integer.valueOf(rangeTwo[1]);
 
             //Part one
-            if(rangeOneStart <= rangeTwoStart && rangeOneFinish >= rangeTwoFinish) {
-                res1 += 1;
-            } else if(rangeTwoStart <= rangeOneStart && rangeTwoFinish >= rangeOneFinish) {
-                res1 += 1;
+            if(rangeOneStart <= rangeTwoStart && rangeOneFinish >= rangeTwoFinish || rangeTwoStart <= rangeOneStart && rangeTwoFinish >= rangeOneFinish) {
+                res1++;
             }
-
             //Part two
-            if(rangeOneStart >= rangeTwoStart && rangeOneStart <= rangeTwoFinish) {
-                res2 += 1;
-            } else if(rangeOneFinish >= rangeTwoStart && rangeOneFinish <= rangeTwoFinish) {
-                res2 += 1;
-            } else if(rangeTwoStart >= rangeOneStart && rangeTwoStart <= rangeOneFinish) {
-                res2 += 1;
-            } else if(rangeTwoFinish >= rangeOneStart && rangeTwoFinish <= rangeOneFinish) {
-                res2 += 1;
-            }   
+            if(rangeOneStart <= rangeTwoFinish && rangeTwoStart <= rangeOneFinish) {
+                res2++;
+            }
         }
         System.out.println("Part one: " + res1);
         System.out.println("Part two: " + res2);
