@@ -38,10 +38,10 @@ public class Solution {
             rangeOne = ranges[0].split("-");
             rangeTwo = ranges[1].split("-");
 
-            rangeOneStart = Integer.valueOf(rangeOne[0]);
-            rangeOneFinish = Integer.valueOf(rangeOne[1]);
-            rangeTwoStart = Integer.valueOf(rangeTwo[0]);
-            rangeTwoFinish = Integer.valueOf(rangeTwo[1]);
+            rangeOneStart = Integer.parseInt(rangeOne[0]);
+            rangeOneFinish = Integer.parseInt(rangeOne[1]);
+            rangeTwoStart = Integer.parseInt(rangeTwo[0]);
+            rangeTwoFinish = Integer.parseInt(rangeTwo[1]);
 
             //Part one
             if(rangeOneStart <= rangeTwoStart && rangeOneFinish >= rangeTwoFinish || rangeTwoStart <= rangeOneStart && rangeTwoFinish >= rangeOneFinish) {
@@ -52,8 +52,8 @@ public class Solution {
                 res2++;
             }
         }
-        System.out.println("Part one: " + res1);
-        System.out.println("Part two: " + res2);
+        //System.out.println("Part one: " + res1);
+        //System.out.println("Part two: " + res2);
     }
 
 
