@@ -40,7 +40,7 @@ public class Solution {
             }
 
             //Part two
-            if(rangeOneStart >= rangeTwoStart && rangeOneStart < rangeTwoFinish) {
+            if(rangeOneStart >= rangeTwoStart && rangeOneStart <= rangeTwoFinish) {
                 res2 += 1;
             } else if(rangeOneFinish >= rangeTwoStart && rangeOneFinish <= rangeTwoFinish) {
                 res2 += 1;
@@ -50,8 +50,8 @@ public class Solution {
                 res2 += 1;
             }   
         }
-        //System.out.println("Part one: " + res1);
-        //System.out.println("Part two: " + res2);
+        System.out.println("Part one: " + res1);
+        System.out.println("Part two: " + res2);
     }
 
 
@@ -70,16 +70,16 @@ public class Solution {
             int rangeTwoStart = Integer.valueOf(rangeTwo[0]);
             int rangeTwoFinish = Integer.valueOf(rangeTwo[1]);
 
+            //Part one
             if(rangeOneStart <= rangeTwoStart && rangeOneFinish >= rangeTwoFinish) {
                 res += 1;
             } else if(rangeTwoStart <= rangeOneStart && rangeTwoFinish >= rangeOneFinish) {
                 res += 1;
-            }
-            
         }
-
+    
 
         System.out.println("Part one: " + res);
+        }
     }
 
     public static void partTwo() throws IOException {
