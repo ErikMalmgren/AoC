@@ -5,13 +5,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class BetterSolution {
+public class DayTwoBetterSolution {
     public static void main(String[] args) throws IOException {
         long time1 = System.nanoTime();
         for(int i = 0; i < 1000; i++) {
-        System.out.println("Part one: " + partOne());
-        System.out.println("Part two: " + partTwo());
-        }
+            System.out.println("Part one: " + partOne());
+            System.out.println("Part two: " + partTwo());
+            }
         long time2 = System.nanoTime();
         System.out.println("Runtime in ms: " + (time2 - time1)/1000000);
     }

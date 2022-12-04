@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 
 
-public class Problem1 {
+public class DayOneSol {
 
     public static void main(String[] args) throws IOException {
         File file = new File("2022/inputs/day1.txt");

@@ -1,6 +1,6 @@
 import java.io.*;
 
-public class Solution {
+public class DayFourSol {
     public static void main(String[] args) throws IOException {
         //partOne();
         //partTwo();

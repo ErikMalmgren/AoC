@@ -1,17 +1,19 @@
 import java.io.*;
+import java.util.*;
 
-public class Solution {
+
+public class DayThreeSetSolution {
+    
     public static void main(String[] args) throws IOException {
         long startTime = System.nanoTime();
-        for(int i = 0 ; i < 1000; i++) {
-            System.out.println("Part one: " + partOne());
-            System.out.println("Part two: " + partTwo());
+        for(int i = 0; i < 1000; i++) {
+        System.out.println("Part one: " + partOne());
+        System.out.println("Part two: " + partTwo());
         }
-       
         long elapsedTime = System.nanoTime() - startTime;
         System.out.println("Runtime in ms: " + elapsedTime/1000000);
-        
     }
+    // Ungefär dubbelt så snabb som första lösningen tror O(n) mot minst O(n^2)
 
 
     private static int partTwo() throws IOException {
@@ -21,33 +23,32 @@ public class Solution {
         String currentLine;
 
         while((currentLine = br.readLine()) != null) {
+            int biggest = 0; 
+
+            Set<Character> inString1 = new HashSet<>();
+            Set<Character> inString2 = new HashSet<>();
+
             String s1 = currentLine;
             String s2 = br.readLine();
             String s3 = br.readLine();
-            int biggest = 0;
 
-            for(int i = 0; i< s1.length(); i++) {
-                char c = s1.charAt(i);
-                int prio = Alphabet.getNum(c);
+            var c1 = s1.toCharArray();
+            var c2 = s2.toCharArray();
+            var c3 = s3.toCharArray();
 
-                for(int j = 0; j < s2.length(); j++) {
-                    if(c == s2.charAt(j)){
-                        for(int k = 0; k < s3.length(); k++) {
-                            if(c == s3.charAt(k)){
-                                if(prio > biggest) {
-                                    biggest = prio;
-                                }
-                            }
-                        }
-                    }
+            for(char c : c1) {
+                inString1.add(c);
+            }
+            for(char c : c2) {
+                inString2.add(c);
+            }
+            for(char c : c3) {
+                if(inString1.contains(c) && inString2.contains(c)) {
+                    biggest = Math.max(Alphabet.getNum(c), biggest);
                 }
             }
-
             sumPriority += biggest;
-            
         }
-
-
         return sumPriority;
     }
 
@@ -59,27 +60,26 @@ public class Solution {
 
         while((currentLine = br.readLine()) != null) {
             int mid = currentLine.length()/2;
-            String s1 = currentLine.substring(0, mid);
-            String s2 = currentLine.substring(mid);
             int biggest = 0; //Highest priority in backpack
 
-            for(int i = 0; i < s1.length(); i++) {
-                
-                char c = s1.charAt(i);
-                int prio = Alphabet.getNum(c);
+            String s1 = currentLine.substring(0, mid);
+            String s2 = currentLine.substring(mid);
 
-                for(int j = 0; j < s2.length(); j++) {
-                    if(c == s2.charAt(j)) {
-                        if(prio > biggest) {
-                            biggest = prio;
-                        }
-                    }
+            char[] c1 = s1.toCharArray(); 
+            char[] c2 = s2.toCharArray();
+           
 
+            Set<Character> inString = new HashSet<>();
+
+            for(char c : c1) {
+                inString.add(c);
+            }
+            for(char c : c2) {
+                if(inString.contains(c)){
+                    biggest = Math.max(Alphabet.getNum(c), biggest);
                 }
-                
-             }
-             sumPriority += biggest;
-
+            }
+            sumPriority += biggest;
         }
         return sumPriority;
     }
