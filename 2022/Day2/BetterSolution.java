@@ -1,5 +1,3 @@
-package Day2;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -36,7 +34,7 @@ public class BetterSolution {
 
     private static int calcPoints(Map<String, Integer> map) throws IOException{
         int totalScore = 0;
-        BufferedReader br = new BufferedReader(new FileReader("inputs/day2.txt"));
+        BufferedReader br = new BufferedReader(new FileReader("2022/inputs/day2.txt"));
         String currentLine;
 
         while((currentLine = br.readLine()) != null){

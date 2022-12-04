@@ -1,5 +1,3 @@
-package Day4;
-
 import java.io.*;
 
 public class Solution {
@@ -19,7 +17,7 @@ public class Solution {
     public static void partOneTwo() throws IOException {
         int res1 = 0;
         int res2 = 0;
-        var input = new File("inputs/day4.txt");
+        var input = new File("2022/inputs/day4.txt");
         var br  = new BufferedReader(new FileReader(input));
         
         String currentLine;
@@ -59,7 +57,7 @@ public class Solution {
 
     public static void partOne() throws IOException {
         int res = 0;
-        var input = new File("inputs/day4.txt");
+        var input = new File("2022/inputs/day4.txt");
         var br  = new BufferedReader(new FileReader(input));
         String currentLine;
 
@@ -86,7 +84,7 @@ public class Solution {
 
     public static void partTwo() throws IOException {
         int res = 0;
-        var input = new File("inputs/day4.txt");
+        var input = new File("2022/inputs/day4.txt");
         var br  = new BufferedReader(new FileReader(input));
         String currentLine;
 
