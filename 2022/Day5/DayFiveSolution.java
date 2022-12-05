@@ -74,7 +74,7 @@ public class DayFiveSolution {
         System.out.print("\n");
     }
 
-    private static List buildStacks() throws IOException {
+    private static List<List<Character>> buildStacks() throws IOException {
 
         List<List<Character>> lists = new ArrayList<>();
 
