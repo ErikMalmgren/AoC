@@ -75,27 +75,13 @@ public class DayFiveSolution {
     }
 
     private static List buildStacks() throws IOException {
-        List<List<Character>> allLists = new ArrayList<>();
-        //en Queue är nog bättre egentligen
-        List<Character> list0 = new ArrayList<>();
-        List<Character> list1 = new ArrayList<>();
-        List<Character> list2 = new ArrayList<>();
-        List<Character> list3 = new ArrayList<>();
-        List<Character> list4 = new ArrayList<>();
-        List<Character> list5 = new ArrayList<>();
-        List<Character> list6 = new ArrayList<>();
-        List<Character> list7 = new ArrayList<>();
-        List<Character> list8 = new ArrayList<>();
 
-        allLists.add(list0);
-        allLists.add(list1);
-        allLists.add(list2);
-        allLists.add(list3);
-        allLists.add(list4);
-        allLists.add(list5);
-        allLists.add(list6);
-        allLists.add(list7);
-        allLists.add(list8);
+        List<List<Character>> lists = new ArrayList<>();
+
+        for(int i = 0; i < 9; i++) {
+            lists.add(new ArrayList<>());
+        }
+        //en Queue eller stack är nog bättre egentligen
         
         var input = new File("2022/inputs/day5Stacks.txt");
         var br = new BufferedReader(new FileReader(input));
@@ -109,14 +95,14 @@ public class DayFiveSolution {
 
             for(int i = 1; i < currentLine.length(); i += 4){
             if(char1[i] != ' ') {
-                    allLists.get(countStack).add(char1[i]);
+                    lists.get(countStack).add(char1[i]);
                 }
             countStack++;
         
             }
         }
 
-        return allLists;
+        return lists;
     }
 
 }
