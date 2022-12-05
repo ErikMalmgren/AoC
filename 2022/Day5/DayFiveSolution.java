@@ -18,7 +18,7 @@ public class DayFiveSolution {
     public static void partTwo() throws IOException {
         var input = new File("2022/inputs/day5Moves.txt");
         var br = new BufferedReader(new FileReader(input));
-        List<ArrayList<Character>> allLists = buildStacks();
+        List<List<Character>> allLists = buildStacks();
         int amount;
         List<Character> listFrom;
         List<Character> listTo;
@@ -50,7 +50,7 @@ public class DayFiveSolution {
     public static void partOne() throws IOException {
         var input = new File("2022/inputs/day5Moves.txt");
         var br = new BufferedReader(new FileReader(input));
-        List<ArrayList<Character>> allLists = buildStacks();
+        List<List<Character>> allLists = buildStacks();
         String currentLine;
         List<Character> listFrom;
         List<Character> listTo;
@@ -74,8 +74,8 @@ public class DayFiveSolution {
         System.out.print("\n");
     }
 
-    private static ArrayList buildStacks() throws IOException {
-        var allLists = new ArrayList<List<Character>>();
+    private static List buildStacks() throws IOException {
+        List<List<Character>> allLists = new ArrayList<>();
         //en Queue är nog bättre egentligen
         List<Character> list0 = new ArrayList<>();
         List<Character> list1 = new ArrayList<>();
