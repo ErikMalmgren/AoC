@@ -41,7 +41,7 @@ public class DayFiveSolution {
             }
         }
         System.out.print("Part two: ");
-        for(int i = 0; i < 9; i++) {
+        for(int i = 0; i < allLists.size(); i++) {
             System.out.print(allLists.get(i).get(0));
         }
         System.out.print("\n");
@@ -68,7 +68,7 @@ public class DayFiveSolution {
             }
         }
         System.out.print("Part one: ");
-        for(int i = 0; i < 9; i++) {
+        for(int i = 0; i < allLists.size(); i++) {
             System.out.print(allLists.get(i).get(0));
         }
         System.out.print("\n");
