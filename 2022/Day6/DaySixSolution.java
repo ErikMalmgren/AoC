@@ -35,10 +35,10 @@ public class DaySixSolution {
             } else {
                 break;
             }
-            
         }
         counter += 4;
         System.out.println("Part two: " + counter);
+        br.close();
     }
 
     private static void partTwo() throws IOException {
@@ -64,6 +64,7 @@ public class DaySixSolution {
         }
         counter += 14;
         System.out.println("Part two: " + counter);
+        br.close();
     }
 
 
