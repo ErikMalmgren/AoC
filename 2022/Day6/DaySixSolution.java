@@ -19,7 +19,7 @@ public class DaySixSolution {
         var br = new BufferedReader(new FileReader(input));
         int counter = 0;
         int read;
-        List<Integer> listInts = new ArrayList<>();
+        List<Integer> listInts = new LinkedList<>();
 
         for(int i = 0; i < 4; i++) {
             listInts.add(br.read());
@@ -46,7 +46,7 @@ public class DaySixSolution {
         var br = new BufferedReader(new FileReader(input));
         int counter = 0;
         int read;
-        List<Integer> listInts = new ArrayList<>();
+        List<Integer> listInts = new LinkedList<>();
 
         for(int i = 0; i < 13; i++) {
             listInts.add(br.read());
