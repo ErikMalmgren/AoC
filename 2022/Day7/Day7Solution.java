@@ -2,22 +2,21 @@ import java.io.*;
 import java.util.*;
 
 public class Day7Solution {
-    private static Map<String, Directory> dirs;
+    private static Map<String, Directory> dirs = new HashMap<>();
     public static void main(String[] args) throws IOException {
         partOne(); 
     }
 
     private static void partOne() throws IOException {
         partOneBuild();
-        System.out.println(dirs);
         System.out.println("Part one: " + calculateOne());
 
     }
-
+//Svaret ska bli 1367870
 
     private static long calculateOne() {
         long totalSum = 0;
-        for(var entry : dirs.entrySet()) { //Dessa kommer inte i rätt ordning (förmodligen)
+        for(var entry : dirs.entrySet()) {
             long value = calcSizeRec(entry.getValue());
             if(value <= 100000){
                 totalSum += value;
@@ -25,17 +24,16 @@ public class Day7Solution {
         }
         return totalSum;
     }
-
+    
     private static long calcSizeRec(Directory dir) {
-   
+        long sumLong = 0;
         if(!dir.subDirectories.isEmpty()){
-            for(Directory d : dir.subDirectories) {
-                return calcSizeRec(d);
+            for(Directory d : dir.subDirectories) { 
+                sumLong += calcSizeRec(d);
             }
         } 
-        return dir.size;
+        return dir.size + sumLong;
     }
-
 
     private static void partOneBuild() throws IOException {
         var input = new File("2022/inputs/day7.txt");
@@ -44,7 +42,6 @@ public class Day7Solution {
         String currentLine;
         String currentFilePath = "";
         Directory dir;
-        dirs = new HashMap<>();
 
         while((currentLine = br.readLine()) != null) {
             String[] parts = currentLine.split(" ");
@@ -113,7 +110,7 @@ class Directory {
         public Directory(String dirPath) {
             this.dirPath = dirPath;
             subDirectories = new ArrayList<>();
-            size = 0;
+            this.size = 0;
         }
 
         public void addSubDir(Directory d) {
@@ -125,6 +122,6 @@ class Directory {
         }
         @Override
         public String toString() {
-            return dirPath + " " + size + "\n";
+            return this.size + "\n";
         }
 }
