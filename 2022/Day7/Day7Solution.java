@@ -1,6 +1,9 @@
 import java.io.*;
 import java.util.*;
 
+
+//Något är cursed i denna lösningen
+
 public class Day7Solution {
     private static Map<String, Directory> dirs = new HashMap<>();
     public static void main(String[] args) throws IOException {
@@ -9,10 +12,21 @@ public class Day7Solution {
 
     private static void partOne() throws IOException {
         partOneBuild();
-        System.out.println("Part one: " + calculateOne());
+        System.out.println("Part one: " + partOneV3());
 
     }
 //Svaret ska bli 1367870
+
+    private static long partOneV3() {
+        long sum = 0;
+        for(var entry : dirs.entrySet()) {
+            var dir = entry.getValue();
+            if(dir.size() <= 100000) {
+                sum += dir.size();
+            }
+        }
+        return sum;
+    }
 
     private static long calculateOne() {
         long totalSum = 0;
@@ -123,5 +137,14 @@ class Directory {
         @Override
         public String toString() {
             return this.size + "\n";
+        }
+        public long size(){
+            long sumSize = size;
+
+            for (Directory child : subDirectories) {
+                size += child.size();
+            }
+    
+            return sumSize;
         }
 }
