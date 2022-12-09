@@ -4,13 +4,13 @@ public class Day8Solution {
     private static int[][] matrix;
     public static void main(String[] args) throws IOException{
         long elapsedTimeSum = 0;
-        for (int i = 0; i < 1000; i++){
+        for (int i = 0; i < 100000; i++){
             long startTime = System.nanoTime();
             calculate();
             long elapsedTime = System.nanoTime() - startTime;
             elapsedTimeSum += elapsedTime;
         }
-        System.out.println("Average execution time (µs): " + elapsedTimeSum/1000000);
+        System.out.println("Average execution time (µs): " + elapsedTimeSum/100000000);
     }
 
     public static void calculate() throws IOException{
@@ -108,7 +108,7 @@ public class Day8Solution {
         //tempRead.close();
         
 
-        matrix = new int[99][99];
+        matrix = new int[99][99]; //Ingen märkbartidsbesparing på att hårdkoda storleken på min int matris kanske 0.01 ms
 
         String line;
         int row = 0;
