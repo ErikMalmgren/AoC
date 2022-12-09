@@ -97,17 +97,18 @@ public class Day8Solution {
     public static void buildIntMatrix() throws IOException {
         var input = new File("2022/inputs/day8.txt");
         var br = new BufferedReader(new FileReader(input));
+       
+        //var tempRead = new BufferedReader(new FileReader(input));
+        //String tempString = tempRead.readLine();
+        //int width = tempString.length();
+        //int length = 1;
+        //while(tempRead.readLine() != null) {
+        //    length++;
+        //}
+        //tempRead.close();
         
-        var tempRead = new BufferedReader(new FileReader(input));
-        String tempString = tempRead.readLine();
-        int width = tempString.length();
-        int length = 1;
-        while(tempRead.readLine() != null) {
-            length++;
-        }
-        tempRead.close();
 
-        matrix = new int[width][length];
+        matrix = new int[99][99];
 
         String line;
         int row = 0;
