@@ -4,14 +4,14 @@ import java.util.*;
 public class DaySixSolution {
     public static void main(String[] args) throws IOException {
         long elapsedTimeSum = 0;
-        for (int i = 0; i < 1000; i++){
+        for (int i = 0; i < 100000; i++){
             long startTime = System.nanoTime();
             partOne();
             partTwo();
             long elapsedTime = System.nanoTime() - startTime;
             elapsedTimeSum += elapsedTime;
         }
-        System.out.println("Average execution time (µs): " + elapsedTimeSum/1000000);
+        System.out.println("Average execution time (µs): " + elapsedTimeSum/100000000);
     }
 
     private static void partOne() throws IOException {
@@ -37,7 +37,7 @@ public class DaySixSolution {
             }
         }
         counter += 4;
-        System.out.println("Part two: " + counter);
+        //System.out.println("Part two: " + counter);
     }
 
     private static void partTwo() throws IOException {
@@ -62,7 +62,7 @@ public class DaySixSolution {
             
         }
         counter += 14;
-        System.out.println("Part two: " + counter);
+        //System.out.println("Part two: " + counter);
     }
 
 
