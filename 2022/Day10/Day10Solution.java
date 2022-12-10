@@ -5,14 +5,21 @@ public class Day10Solution {
     private static Map<Integer, Integer> clockCycles; //Första int är klockcykel och andra int är x-värdet
     
     public static void main(String[] args) throws IOException{
-        calculate();
+        long elapsedTimeSum = 0;
+        for (int i = 0; i < 1000; i++){
+            long startTime = System.nanoTime();
+            calculate();
+            long elapsedTime = System.nanoTime() - startTime;
+            elapsedTimeSum += elapsedTime;
+        }
+        System.out.println("Average execution time (µs): " + elapsedTimeSum/1000000);
     }
 
     private static void calculate() throws IOException{
         readFile();
         sumSignalStrength();
         drawCRT();
-        //System.out.println(clockCycles);
+        System.out.println(clockCycles);
     }
 
     private static void readFile() throws IOException {
