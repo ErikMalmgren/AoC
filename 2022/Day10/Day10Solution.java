@@ -6,7 +6,7 @@ public class Day10Solution {
     
     public static void main(String[] args) throws IOException{
         long elapsedTimeSum = 0;
-        for (int i = 0; i < 1000; i++){
+        for (int i = 0; i < 100; i++){
             long startTime = System.nanoTime();
             calculate();
             long elapsedTime = System.nanoTime() - startTime;
@@ -19,7 +19,6 @@ public class Day10Solution {
         readFile();
         sumSignalStrength();
         drawCRT();
-        System.out.println(clockCycles);
     }
 
     private static void readFile() throws IOException {
@@ -60,6 +59,7 @@ public class Day10Solution {
     }
 
     private static void drawCRT() {
+        System.out.println("Part two: ");
         String screen = "";
         int pixel = 0;
         String sign = "";
@@ -78,6 +78,6 @@ public class Day10Solution {
                 pixel = 0;
             }
         }
-        System.out.print(screen);
+        System.out.println(screen);
     }
 }
