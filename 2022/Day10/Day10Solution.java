@@ -60,24 +60,24 @@ public class Day10Solution {
 
     private static void drawCRT() {
         System.out.println("Part two: ");
-        String screen = "";
+        var sb = new StringBuilder();
         int pixel = 0;
-        String sign = "";
+        char sign;
         for(int i = 1; i < clockCycles.size(); i++) {
             int x = clockCycles.get(i);
             if(pixel == x-1 || pixel == x || pixel == x+1) {
-                sign = "#";
+                sign = '#';
             } else {
-                sign = ".";
+                sign = '.';
             }
-            screen += sign;
+            sb.append(sign);
             pixel++;
 
             if(pixel % 40 == 0) {
-                screen += "\n";
+                sb.append('\n');
                 pixel = 0;
             }
         }
-        System.out.println(screen);
+        System.out.println(sb.toString());
     }
 }
