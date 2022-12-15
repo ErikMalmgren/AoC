@@ -9,9 +9,6 @@ public class Day11Solution {
         parseInput();
         rounds(20);
         System.out.println("Part one: " + monkeyBusiness());
-
-        rounds(9980);
-        System.out.println("Part two: " + monkeyBusiness());
     }
 
     public static long monkeyBusiness(){

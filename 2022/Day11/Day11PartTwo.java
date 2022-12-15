@@ -7,7 +7,7 @@ public class Day11PartTwo {
     private static List<Monkey> monkeys;
     public static void main(String[] args) throws IOException {
         parseInput();
-        rounds(10000);
+        rounds();
         System.out.println("Part two: " + monkeyBusiness());
     }
 
@@ -19,17 +19,35 @@ public class Day11PartTwo {
         return pqInspections.poll() * pqInspections.poll();
     }
 
-    public static void rounds(int rounds) {
-        for (int i = 0; i < rounds; i++) { //Number of rounds
-            for (Monkey monkey : monkeys) {
-                int size = monkey.inventory.size();
-                for (int j = 0; j < size; j++) {
-                long[] res = monkey.action();
-                    monkeys.get((int) res[1]).addItem(res[0]);
-                }
-            }
-            
+    //Fattar inte varför detta funkar men inte motsvarande lösning som jag har i P1
+    //Men mer najs lösning, inspiration från https://github.com/runeanderberg/AdventOfCode/blob/main/Day11/src/Day11.java
+    public static void rounds() {
+        var lcm = 1;
+        for(var monkey : monkeys) {
+            lcm *= monkey.divNumber;
         }
+
+        for(int round = 0; round < 10000; round++) {
+            for(var monkey : monkeys) {
+                for(var item : monkey.inventory) {
+                    item = utilities.parseOperation(item, monkey.operation);
+    
+                    if(item > lcm) {
+                        item %= lcm;
+                    }
+
+                    if(item % monkey.divNumber == 0) {
+                        monkeys.get(monkey.ifTrue).inventory.add(item);
+                    } else {
+                        monkeys.get(monkey.ifFalse).inventory.add(item);
+                    }
+                }
+
+                monkey.itemsInspected += monkey.inventory.size();
+                monkey.inventory.clear();
+            }
+        }
+
     }
 
     public static void parseInput() throws IOException{
@@ -103,33 +121,6 @@ class Monkey {
         this.ifFalse = ifFalse;
         itemsInspected = 0;
     }
-
-    public long[] action() {
-        long[] res = new long[2];
-        int nextMonkey;
-
-        long a = inventory.poll();
-        itemsInspected++;
-
-        a = utilities.parseOperation(a, operation);
-        a = a/3;
-        if(a % divNumber == 0) {
-            nextMonkey = ifTrue;
-        } else {
-            nextMonkey = ifFalse;
-        }
-        res[0] = a;
-        res[1] = nextMonkey;
-
-        return res;
-    }
-
-    public void addItem(long item) {
-        inventory.add(item);
-    }
-
-    
-
     
 }
 
