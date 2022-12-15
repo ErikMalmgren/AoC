@@ -9,16 +9,23 @@ public class Day12Solution {
     private static int rowEnd;
     private static int colEnd;
     public static void main(String[] args) throws IOException{
-        calculate();
+        long elapsedTimeSum = 0;
+        for (int i = 0; i < 100; i++){
+            long startTime = System.nanoTime();
+            calculate();
+            long elapsedTime = System.nanoTime() - startTime;
+            elapsedTimeSum += elapsedTime;
+        }
+        System.out.println("Average execution time (µs): " + elapsedTimeSum/100000);
     }
     
 
     private static void calculate() throws IOException{
         parseInput();
         BSF(rowStart, colStart);
-        System.out.println("Part one: " + distance[rowEnd][colEnd]);
-        //partTwo();
-        System.out.println("Part two: " + partTwo());
+        //System.out.println("Part one: " + distance[rowEnd][colEnd]);
+        partTwo();
+        //System.out.println("Part two: " + partTwo());
     }
 
     //BSF från toppen och sen kolla avstånde från alla a-positioner, funkar inte men tanken är god
