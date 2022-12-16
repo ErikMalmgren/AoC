@@ -15,7 +15,7 @@ public class DayThreeSol {
 
 
     private static int partTwo() throws IOException {
-        var input = new File("2022/inputs/day3.txt");
+        var input = new File("2022/inputs/day03.txt");
         var br = new BufferedReader(new FileReader(input));
         int sumPriority = 0;
         String currentLine;
@@ -52,7 +52,7 @@ public class DayThreeSol {
     }
 
     private static int partOne() throws IOException {
-        var input = new File("2022/inputs/day3.txt");
+        var input = new File("2022/inputs/day03.txt");
         var br = new BufferedReader(new FileReader(input));
         int sumPriority = 0;
         String currentLine;

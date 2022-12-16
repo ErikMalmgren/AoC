@@ -20,7 +20,7 @@ public class DayTwoSol {
         // X = lose, Y = draw, Z = win
 
         try {
-            Scanner scan = new Scanner(new File("2022/inputs/day2.txt"));
+            Scanner scan = new Scanner(new File("2022/inputs/day02.txt"));
             
             while(scan.hasNextLine()){
                 String temp = scan.nextLine();
@@ -99,7 +99,7 @@ public class DayTwoSol {
         // A = rock, B = paper, C = scissor
         // X = rock, Y = paper, Z = scissor
         try{
-            Scanner scan = new Scanner(new File("2022/inputs/day2.txt"));
+            Scanner scan = new Scanner(new File("2022/inputs/day02.txt"));
             
             while(scan.hasNextLine()){
                 String temp = scan.nextLine();

@@ -79,7 +79,7 @@ public class Day9SolutionP1 {
 
 
     private static void readFile() throws IOException {
-        var input = new File("2022/inputs/day9.txt");
+        var input = new File("2022/inputs/day09.txt");
         var reader = new BufferedReader(new FileReader(input));
         headX = 0;
         headY = 0;

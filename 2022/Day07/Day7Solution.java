@@ -50,7 +50,7 @@ public class Day7Solution {
     }
 
     private static void partOneBuild() throws IOException {
-        var input = new File("2022/inputs/day7.txt");
+        var input = new File("2022/inputs/day07.txt");
         var br = new BufferedReader(new FileReader(input));
 
         String currentLine;

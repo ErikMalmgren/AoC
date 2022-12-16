@@ -14,7 +14,7 @@ public class Day9SolutionGeneral {
     }
 
     private static void calculate() throws IOException {
-        var input = new File("2022/inputs/day9.txt");
+        var input = new File("2022/inputs/day09.txt");
         var reader = new BufferedReader(new FileReader(input));
         String line;
         var knotOneVisited = new HashSet<>();

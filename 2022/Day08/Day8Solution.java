@@ -4,13 +4,13 @@ public class Day8Solution {
     private static int[][] matrix;
     public static void main(String[] args) throws IOException{
         long elapsedTimeSum = 0;
-        for (int i = 0; i < 100000; i++){
+        for (int i = 0; i < 1000; i++){
             long startTime = System.nanoTime();
             calculate();
             long elapsedTime = System.nanoTime() - startTime;
             elapsedTimeSum += elapsedTime;
         }
-        System.out.println("Average execution time (µs): " + elapsedTimeSum/100000000);
+        System.out.println("Average execution time (µs): " + elapsedTimeSum/1000000);
     }
 
     public static void calculate() throws IOException{
@@ -95,7 +95,7 @@ public class Day8Solution {
     
 
     public static void buildIntMatrix() throws IOException {
-        var input = new File("2022/inputs/day8.txt");
+        var input = new File("2022/inputs/day08.txt");
         var br = new BufferedReader(new FileReader(input));
        
         //var tempRead = new BufferedReader(new FileReader(input));

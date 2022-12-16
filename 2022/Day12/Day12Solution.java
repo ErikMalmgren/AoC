@@ -28,7 +28,8 @@ public class Day12Solution {
         //System.out.println("Part two: " + partTwo());
     }
 
-    //BSF från toppen och sen kolla avstånde från alla a-positioner, funkar inte men tanken är god
+    //BSF från toppen och sen kolla avstånde till alla a-positioner, funkar inte men tanken är god
+    //Absolut smartast hade varit att göra BSF från toppen direkt eftersom det går svaret på både del 1 och 2
     private static int partTwoV2() {
         resetDistance();
         BSF(rowEnd, colEnd);
@@ -65,6 +66,8 @@ public class Day12Solution {
         return shortestDistace;
     }
 
+
+    //Det verkar som att kotymen vad gäller pathfinding i sådana situationer är mann man skapa Pointobjekt istället.
     private static void BSF(int startingRow, int startingCol) {
         LinkedList<int[]> queue = new LinkedList<>();
         int[] currentPos = new int[2];

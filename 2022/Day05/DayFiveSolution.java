@@ -16,7 +16,7 @@ public class DayFiveSolution {
     }
 
     public static void partTwo() throws IOException {
-        var input = new File("2022/inputs/day5Moves.txt");
+        var input = new File("2022/inputs/day05Moves.txt");
         var br = new BufferedReader(new FileReader(input));
         List<List<Character>> allLists = buildStacks();
         int amount;
@@ -48,7 +48,7 @@ public class DayFiveSolution {
     }
 
     public static void partOne() throws IOException {
-        var input = new File("2022/inputs/day5Moves.txt");
+        var input = new File("2022/inputs/day05Moves.txt");
         var br = new BufferedReader(new FileReader(input));
         List<List<Character>> allLists = buildStacks();
         String currentLine;
@@ -83,7 +83,7 @@ public class DayFiveSolution {
         }
         //en Queue eller stack är nog bättre egentligen
         
-        var input = new File("2022/inputs/day5Stacks.txt");
+        var input = new File("2022/inputs/day05Stacks.txt");
         var br = new BufferedReader(new FileReader(input));
 
         String currentLine;

@@ -57,7 +57,7 @@ public class Day7TryAgain {
     }
 
     private static elfDirectory buildFileSystem() throws IOException{
-        var input = new File("2022/inputs/day7.txt");
+        var input = new File("2022/inputs/day07.txt");
         var br = new BufferedReader(new FileReader(input));
 
         elfDirectory root = new elfDirectory("/", null);

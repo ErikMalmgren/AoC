@@ -4,18 +4,18 @@ import java.util.*;
 public class DaySixSolution {
     public static void main(String[] args) throws IOException {
         long elapsedTimeSum = 0;
-        for (int i = 0; i < 100000; i++){
+        for (int i = 0; i < 1000; i++){
             long startTime = System.nanoTime();
             partOne();
             partTwo();
             long elapsedTime = System.nanoTime() - startTime;
             elapsedTimeSum += elapsedTime;
         }
-        System.out.println("Average execution time (µs): " + elapsedTimeSum/100000000);
+        System.out.println("Average execution time (µs): " + elapsedTimeSum/1000000);
     }
 
     private static void partOne() throws IOException {
-        var input = new File("2022/inputs/day6.txt");
+        var input = new File("2022/inputs/day06.txt");
         var br = new BufferedReader(new FileReader(input));
         int counter = 0;
         int read;
@@ -41,7 +41,7 @@ public class DaySixSolution {
     }
 
     private static void partTwo() throws IOException {
-        var input = new File("2022/inputs/day6.txt");
+        var input = new File("2022/inputs/day06.txt");
         var br = new BufferedReader(new FileReader(input));
         int counter = 0;
         int read;

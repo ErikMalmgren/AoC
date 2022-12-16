@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class DayOneSol {
 
     public static void main(String[] args) throws IOException {
-        File file = new File("2022/inputs/day1.txt");
+        File file = new File("2022/inputs/day01.txt");
 
         int cal = 0;
         ArrayList<Integer> cals = new ArrayList<>();
