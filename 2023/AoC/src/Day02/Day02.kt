@@ -8,7 +8,7 @@ fun main(args: Array<String>) {
   println("Part 2 result: $resTwo")
 }
 
-fun partOne(str: String): Int {
+private fun partOne(str: String): Int {
   val colorMax = colorMap(str)
 
   val parts = str.split(":").map{ it.trim()}
@@ -21,7 +21,7 @@ fun partOne(str: String): Int {
   return game
 }
 
-fun partTwo(str: String): Int {
+private fun partTwo(str: String): Int {
   val colorMax = colorMap(str)
 
   return colorMax["red"]!! * colorMax["green"]!! * colorMax["blue"]!!
