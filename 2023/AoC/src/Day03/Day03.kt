@@ -12,15 +12,11 @@ fun main() {
 private fun partTwo(lines: List<String>): Int {
   val matrix = lines.map { it.toCharArray() }
 
-  val rows = matrix.size
-  val cols = matrix[0].size
   var res = 0
-
   for(i in matrix.indices) {
     for(j in matrix[0].indices) {
       if(matrix[i][j] == '*') {
         val adjNums = adjacentNumbers(matrix, i, j)
-        println(adjNums)
         if(adjNums.size > 1) {
           res += adjNums.reduce { acc, index -> acc * index }
         }
@@ -78,7 +74,6 @@ private fun partOne(lines: List<String>): Int {
   for(i in 0..<rows) {
     var j = 0
     while(j < cols) {
-      //println(matrix[i][j])
       if(matrix[i][j].isDigit() && symbolAdjacent(matrix, i, j)){
         val number = findNumber(matrix, i, j)
         sum += number.toInt()
@@ -124,17 +119,14 @@ private fun symbolAdjacent(matrix: List<CharArray>, row: Int, col: Int) : Boolea
 private fun findNumber(matrix: List<CharArray>, row: Int, col: Int): String {
   var number = ""
 
-  //Tror att jag måste stega tillbaka currentCol här
   var currentCol = col
   while(currentCol > 0 && matrix[row][currentCol -1].isDigit()) {
     currentCol--
   }
 
-
   while(currentCol < matrix[0].size && matrix[row][currentCol].isDigit()) {
     number += matrix[row][currentCol]
     currentCol++
   }
-
   return number
 }
