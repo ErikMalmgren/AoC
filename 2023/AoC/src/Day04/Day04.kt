@@ -4,10 +4,11 @@ import java.io.File
 import kotlin.math.pow
 
 private var currentCardIndex: Int = 0
-private val cards = Array(198) {1}
+private lateinit var cards: Array<Int>
 
 fun main() {
   val lines: List<String> = File("src/Day04/input").readLines()
+  cards = Array(lines.size) {1}
   val resOne = lines.sumOf{ line -> partOne(line) }
   lines.forEach { line -> partTwo(line) }
   val resTwo = cards.sum()
@@ -31,22 +32,21 @@ private fun partTwo(str: String) {
   val numberOfCards = cards[currentCardIndex]
   val matches = numberMatches(str)
 
-  for(i in 0 until numberOfCards) {
-    var tempCardIndex = currentCardIndex + 1
-    for(j in 1..matches) {
-      cards[tempCardIndex]++
-      tempCardIndex++
+  val tempCardIndex = currentCardIndex + 1
+  for (j in tempCardIndex..<tempCardIndex + matches) {
+    if (j < cards.size) {
+      cards[j] += numberOfCards
     }
   }
+
   currentCardIndex++
 
 }
 
 private fun numberMatches(str: String): Int {
-  val parts = str.split("|").map { it.trim() }
-  val myNumbers = parts[1].split(" ").filter { it.isNotEmpty() }
-  val parts2 = parts[0].split(":").map { it.trim() }
-  val winningNumbers = parts2[1].split(" ").filter { it.isNotEmpty() }
+  val input = str.replace(":", "|").split("|").map{it.trim()}
+  val myNumbers = input[1].split(" ").filter { it.isNotEmpty() }
+  val winningNumbers = input[2].split(" ").filter { it.isNotEmpty() }
 
   return myNumbers.count { it in winningNumbers }
 }
