@@ -2,7 +2,7 @@
 import java.io.File
 
 fun main() {
-  val lines: List<String> = File("src/Day03/input").readLines()
+  val lines: List<String> = File("src/Day03/test_input").readLines()
   val resOne = partOne(lines)
   val resTwo = partTwo(lines)
   println("Part 1 result: $resOne")
