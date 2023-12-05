@@ -1,7 +1,6 @@
 package Day05
 
 import java.io.File
-private val mapCache = mutableMapOf<String, Map<Long, Pair<Long, Long>>>()
 
 fun main() {
   val input: String = File("src/Day05/input").readText()
@@ -39,6 +38,8 @@ private fun solution(lines: String) {
     locations.add(calcDestination(humidityToLocationMap, dest6))
   }
 
+
+  // Del 2, jag tror att en bättre lösning är att kolla locations nerifrån tills man hittar en som kopplar till ett seed
   var minValue = Long.MAX_VALUE
   var i = 0
   while (i < seeds.size){
