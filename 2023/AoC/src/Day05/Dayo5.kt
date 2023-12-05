@@ -1,9 +1,10 @@
 package Day05
 
 import java.io.File
+private val mapCache = mutableMapOf<String, Map<Long, Pair<Long, Long>>>()
 
 fun main() {
-  val input: String = File("src/Day05/test_input").readText()
+  val input: String = File("src/Day05/input").readText()
   solution(input)
 }
 
@@ -20,32 +21,43 @@ private fun solution(lines: String) {
   val humidityToLocation = splitLines[7].split(":", "\n").map { it.trim() }.filter { it.isNotEmpty() }.drop(1)
 
   val locations = mutableListOf<Long>()
+  val seedsToSoilMap = createMap(seedsToSoil)
+  val soilToFertilizerMap = createMap(soilToFertilizer)
+  val fertilizerToWaterMap = createMap(fertilizerToWater)
+  val waterToLightMap = createMap(waterToLight)
+  val lightToTemperatureMap = createMap(lightToTemperature)
+  val temperatureToHumidityMap = createMap(temperatureToHumidity)
+  val humidityToLocationMap = createMap(humidityToLocation)
 
   seeds.forEach { seed ->
-    val dest1 = calcDestination(seedsToSoil, seed)
-    val dest2 = calcDestination(soilToFertilizer, dest1)
-    val dest3 = calcDestination(fertilizerToWater, dest2)
-    val dest4 = calcDestination(waterToLight, dest3)
-    val dest5 = calcDestination(lightToTemperature, dest4)
-    val dest6 = calcDestination(temperatureToHumidity, dest5)
-    locations.add(calcDestination(humidityToLocation, dest6))
+    val dest1 = calcDestination(seedsToSoilMap, seed)
+    val dest2 = calcDestination(soilToFertilizerMap, dest1)
+    val dest3 = calcDestination(fertilizerToWaterMap, dest2)
+    val dest4 = calcDestination(waterToLightMap, dest3)
+    val dest5 = calcDestination(lightToTemperatureMap, dest4)
+    val dest6 = calcDestination(temperatureToHumidityMap, dest5)
+    locations.add(calcDestination(humidityToLocationMap, dest6))
   }
 
-  val locations2 = mutableListOf<Long>()
+  var minValue = Long.MAX_VALUE
   var i = 0
   while (i < seeds.size){
     var currentSeed = seeds[i]
     val currentRange = seeds[i + 1]
 
     for(j in 0..currentRange) {
-      val dest1 = calcDestination(seedsToSoil, currentSeed)
-      val dest2 = calcDestination(soilToFertilizer, dest1)
-      val dest3 = calcDestination(fertilizerToWater, dest2)
-      val dest4 = calcDestination(waterToLight, dest3)
-      val dest5 = calcDestination(lightToTemperature, dest4)
-      val dest6 = calcDestination(temperatureToHumidity, dest5)
-      val dest7 = calcDestination(humidityToLocation, dest6)
-      locations2.add(dest7)
+      val dest1 = calcDestination(seedsToSoilMap, currentSeed)
+      val dest2 = calcDestination(soilToFertilizerMap, dest1)
+      val dest3 = calcDestination(fertilizerToWaterMap, dest2)
+      val dest4 = calcDestination(waterToLightMap, dest3)
+      val dest5 = calcDestination(lightToTemperatureMap, dest4)
+      val dest6 = calcDestination(temperatureToHumidityMap, dest5)
+      val dest7 = calcDestination(humidityToLocationMap, dest6)
+      if(dest7 < minValue) {
+        minValue = dest7
+        println(currentSeed)
+      }
+
       currentSeed++
     }
 
@@ -53,10 +65,30 @@ private fun solution(lines: String) {
   }
 
   println("Part 1 result: " + locations.min())
-  println("Part 2 result: " + locations2.min())
+  println("Part 2 result: " + minValue)
 }
 
-private fun calcDestination(map: List<String>, seed: Long): Long {
+private fun createMap(map: List<String>): Map<Long, Pair<Long, Long>> {
+  return map.map { str ->
+    val parts = str.split(" ").map { it.toLong() }
+    val source = parts[1]
+    val destination = parts[0]
+    val range = parts[2]
+    source to (destination to range)
+  }.toMap()
+}
+
+private fun calcDestination(map: Map<Long, Pair<Long, Long>>, seed: Long): Long {
+  map.forEach { (source, pair) ->
+    val (destination, range) = pair
+    if (seed in source until (source + range)) {
+      return destination + (seed - source)
+    }
+  }
+  return seed
+}
+
+private fun calcDestinationOld(map: List<String>, seed: Long): Long {
 
   for(str in map){
     val parts = str.split(" ").map { it.trim() }.map { it.toLong() }
