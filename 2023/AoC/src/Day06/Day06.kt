@@ -1,50 +1,50 @@
-
 import java.io.File
+import kotlin.math.ceil
+import kotlin.math.floor
+import kotlin.math.pow
+import kotlin.math.sqrt
 
-
-// Det "smarta" sättet är att kolla vilka två tider som ger rekorddistansen, intervallet mellan går längre
-// Detta gick dock fortare att programmera och exekveringstiden är ändå snabb
 fun main() {
-  val input: String = File("src/Day06/input").readText()
-  println("Part 1: " + partOne(input))
-  println("Part 2: " + partTwo(input))
-  // println("Part 2: " + countWins(56977875, 546192711311139))
+  val startTime = System.nanoTime()
+  repeat(1000) {
+    val input: String = File("src/Day06/input").readText()
+    println("Part 1: " + partOne(input))
+    println("Part 2: " + partTwo(input))
+  }
+
+  val currentTime = System.nanoTime()
+  println("Snittid (ns): " + (currentTime - startTime) / 1000)
+
 }
 
 private fun partTwo(lines: String): Long {
 
   val line = lines.split("\n")
-  val time = line[0].split(" ").drop(1).filter{ it.isNotEmpty() }.joinToString(separator = "")
-  val record = line[1].split(" ").drop(1).filter{ it.isNotEmpty() }.joinToString(separator = "")
+  val time = line[0].split(" ").drop(1).filter { it.isNotEmpty() }.joinToString(separator = "")
+  val record = line[1].split(" ").drop(1).filter { it.isNotEmpty() }.joinToString(separator = "")
 
-  return countWins(time.toLong(), record.toLong())
+  return countWins(time.toDouble(), record.toDouble())
 }
 
 private fun partOne(lines: String): Long {
   val line = lines.split("\n")
-  val times = line[0].split(" ").filter { it.isNotEmpty() }.drop(1).map { it.toLong() }
-  val recordDistances = line[1].split(" ").filter { it.isNotEmpty() }.drop(1).map { it.toLong() }
-
+  val times = line[0].split(" ").filter { it.isNotEmpty() }.drop(1).map { it.toDouble() }
+  val recordDistances = line[1].split(" ").filter { it.isNotEmpty() }.drop(1).map { it.toDouble() }
 
   val numberRaceWins = mutableListOf<Long>()
-  for(i in times.indices){
+  for (i in times.indices) {
     val wins = countWins(times[i], recordDistances[i])
     numberRaceWins.add(wins)
   }
 
-  return numberRaceWins.reduce {acc, i -> acc * i}
+  return numberRaceWins.reduce { acc, i -> acc * i }
 }
 
-private fun countWins(time: Long, record: Long): Long {
+private fun countWins(time: Double, record: Double): Long {
 
-  var res: Long = 0
+  val rootTerm = sqrt((time / 2).pow(2) - record)
+  val t1 = ceil(time / 2 + rootTerm)
+  val t2 = floor(time / 2 - rootTerm)
 
-  for(i in 0..time){
-    val distance = i * (time - i)
-    if(distance > record) {
-      res++
-    }
-  }
-
-  return res
+  return (t1 - t2).toLong() - 1
 }
