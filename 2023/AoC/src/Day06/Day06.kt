@@ -1,6 +1,9 @@
 
 import java.io.File
 
+
+// Det "smarta" sättet är att kolla vilka två tider som ger rekorddistansen, intervallet mellan går längre
+// Detta gick dock fortare att programmera och exekveringstiden är ändå snabb
 fun main() {
   val input: String = File("src/Day06/input").readText()
   println("Part 1: " + partOne(input))
