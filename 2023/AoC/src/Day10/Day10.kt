@@ -1,8 +1,45 @@
 import java.io.File
-
+private lateinit var map: List<CharArray>
 fun main() {
   val input: List<CharArray> = File("src/Day10/input").readLines().map { it.toCharArray() }
+  map = input.map { CharArray(it.size) { '0' } }
   println("Part 1: " + partOne(input))
+
+  println("Part 2: " + partTwo())
+}
+
+fun partTwo(): Int {
+  var res = 0
+  // Raycasting
+  val mapCopy = map
+
+  for(row in map.indices) {
+    var intersections = 0
+    for(col in map[row].indices) {
+      if(map[row][col] != '0') {
+        if(checkIntersection(row, col)) {
+          intersections++
+        }
+        continue
+      }
+      if(intersections % 2 != 0) {
+        mapCopy[row][col] = '.'
+        res++
+      }
+    }
+  }
+
+  return res
+}
+
+fun checkIntersection(row: Int, col: Int): Boolean {
+  when(map[row][col]) {
+    '|' -> return true
+    'F' -> return true
+    '7' -> return true
+  }
+
+  return false
 }
 
 fun partOne(matrix: List<CharArray>): Int {
@@ -29,17 +66,51 @@ fun countLoop(matrix: List<CharArray>, start: Pair<Int, Int>): Int {
   var currentPipe = findConnection(start, matrix, lastCords)
   var nextPipe = findConnection(currentPipe, matrix, lastCords)
 
+  val firstPipe = currentPipe
+
+  map[start.first][start.second] = matrix[start.first][start.second]
+  map[currentPipe.first][currentPipe.second] = matrix[currentPipe.first][currentPipe.second]
+
   while (nextPipe != start) {
 
     lastCords = currentPipe
     currentPipe = nextPipe
+    map[currentPipe.first][currentPipe.second] = matrix[currentPipe.first][currentPipe.second]
     nextPipe = findConnection(currentPipe, matrix, lastCords)
     res++
 
   }
 
+  val lastPipe = currentPipe
 
+  calcSignStart(firstPipe, lastPipe, start, matrix)
   return res
+}
+
+fun calcSignStart(firstPipe: Pair<Int, Int>, lastPipe: Pair<Int, Int>, start: Pair<Int, Int>, matrix: List<CharArray>) {
+  val pipeStart = matrix[firstPipe.first][firstPipe.second]
+  val pipeEnd = matrix[lastPipe.first][lastPipe.second]
+
+  // |
+  if (pipeStart == '|' && pipeEnd == '|') {
+    map[start.first][start.second] = '|'
+    return
+  }
+
+  // F loopen börjar alltid neråt
+
+  if(lastPipe.first < firstPipe.first && lastPipe.second > firstPipe.second) {
+    map[start.first][start.second] = 'F'
+    return
+  }
+
+  // 7
+
+  if(lastPipe.first < firstPipe.first && lastPipe.second < firstPipe.second) {
+    map[start.first][start.second] = '7'
+    return
+  }
+
 }
 
 fun findConnection(cords: Pair<Int, Int>, matrix: List<CharArray>, lastCords: Pair<Int, Int> ): Pair<Int, Int> {
